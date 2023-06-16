@@ -34,7 +34,7 @@ python ./tools/dev/v8gen.py arm64.release -vv -- '
 is_debug = false
 target_cpu = "arm64"
 v8_target_cpu = "arm64"
-v8_enable_i18n_support= false
+v8_enable_i18n_support = true
 v8_use_snapshot = true
 v8_use_external_startup_data = true
 is_component_build = true

@@ -51,7 +51,7 @@ python ./tools/dev/v8gen.py arm64.release -vv -- '
 target_os = "android"
 target_cpu = "arm64"
 is_debug = false
-v8_enable_i18n_support= false
+v8_enable_i18n_support = true
 v8_target_cpu = "arm64"
 use_goma = false
 v8_use_snapshot = true

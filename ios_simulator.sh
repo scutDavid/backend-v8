@@ -34,7 +34,7 @@ echo "=====[ Building V8 ]====="
 python ./tools/dev/v8gen.py x64.release -vv -- '
 v8_use_external_startup_data = true
 v8_use_snapshot = true
-v8_enable_i18n_support = false
+v8_enable_i18n_support = true
 is_debug = false
 v8_static_library = true
 ios_enable_code_signing = false
