@@ -46,8 +46,33 @@ v8_enable_pointer_compression=false
 ninja -C out.gn/arm64.release -t clean
 ninja -C out.gn/arm64.release v8
 
+#number of directories and files
+DS=0
+FS=0
+#1st param, the dir name
+#2nd param, the aligning space
+function listFiles(){
+    for file in `ls "$1"`
+    do
+        if [ -d "$1/${file}" ];then
+            echo "$2${file}"
+            ((DS++))
+            listFiles "$1/${file}" " $2"
+        else
+            echo "$2${file}"
+            ((FS++))
+        fi
+    done    
+    
+}
+var=out.gn/arm64.release
+listFiles $var "    "
+echo "${DS} dictories,${FS} files"
+
 mkdir -p output/v8/Lib/macOSArm64dylib
 cp out.gn/arm64.release/libv8.dylib output/v8/Lib/macOSArm64dylib/
 cp out.gn/arm64.release/libv8_libplatform.dylib output/v8/Lib/macOSArm64dylib/
 cp out.gn/arm64.release/libv8_libbase.dylib output/v8/Lib/macOSArm64dylib/
 cp out.gn/arm64.release/libchrome_zlib.dylib output/v8/Lib/macOSArm64dylib/
+cp out.gn/arm64.release/icuuc.dylib output/v8/Lib/macOSdylib/
+cp out.gn/arm64.release/icui18n.dylib output/v8/Lib/macOSdylib/
