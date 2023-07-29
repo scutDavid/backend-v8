@@ -69,25 +69,24 @@ ninja -C out.gn/x64.release wee8
 #number of directories and files
 DS=0
 FS=0
-#1st param, the dir name
-#2nd param, the aligning space
-function listFiles(){
-    for file in `ls "$1"`
-    do
-        if [ -d "$1/${file}" ];then
-            echo "$2${file}"
-            ((DS++))
-            listFiles "$1/${file}" " $2"
-        else
-            echo "$2${file}"
-            ((FS++))
-        fi
-    done    
-    
-}
-var = out.gn/x64.release/obj
-listFiles $var "    "
+var1="out.gn/x64.release/obj"
+var2="    "
+for file in `ls "$var1"`
+do
+    if [ -d "$var1/${file}" ];then
+        echo "$var2${file}"
+        ((DS++))
+        listFiles "$var1/${file}" " $var2"
+    else
+        echo "$var2${file}"
+        ((FS++))
+    fi
+done 
 echo "${DS} dictories,${FS} files"
+
+node $GITHUB_WORKSPACE/node-script/genBlobHeader.js "android x64" out.gn/x64.release/snapshot_blob.bin
+mkdir -p output/v8/Inc/Blob/Android/x64
+cp SnapshotBlob.h output/v8/Inc/Blob/Android/x64/
 
 mkdir -p output/v8/Lib/Android/x64
 cd output/v8/Lib/Android/x64
@@ -100,8 +99,3 @@ ar -rcsD libwee8.a out.gn/x64.release/obj/third_party/icu/icuuc/*.o
 ar -rcsD libwee8.a out.gn/x64.release/obj/third_party/icu/icui18n/*.o
 
 third_party/android_ndk/toolchains/x86_64-4.9/prebuilt/linux-x86_64/x86_64-linux-android/bin/strip -g -S -d --strip-debug --verbose output/v8/Lib/Android/x64/libwee8.a
-
-node $GITHUB_WORKSPACE/node-script/genBlobHeader.js "android x64" out.gn/x64.release/snapshot_blob.bin
-
-mkdir -p output/v8/Inc/Blob/Android/x64
-cp SnapshotBlob.h output/v8/Inc/Blob/Android/x64/

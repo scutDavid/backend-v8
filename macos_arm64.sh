@@ -49,25 +49,25 @@ ninja -C out.gn/arm64.release wee8
 #number of directories and files
 DS=0
 FS=0
-#1st param, the dir name
-#2nd param, the aligning space
-function listFiles(){
-    for file in `ls "$1"`
-    do
-        if [ -d "$1/${file}" ];then
-            echo "$2${file}"
-            ((DS++))
-            listFiles "$1/${file}" " $2"
-        else
-            echo "$2${file}"
-            ((FS++))
-        fi
-    done    
-    
-}
-var=out.gn/arm64.release/obj
-listFiles $var "    "
+var1="out.gn/arm64.release/obj"
+var2="    "
+for file in `ls "$var1"`
+do
+    if [ -d "$var1/${file}" ];then
+        echo "$var2${file}"
+        ((DS++))
+        listFiles "$var1/${file}" " $var2"
+    else
+        echo "$var2${file}"
+        ((FS++))
+    fi
+done 
 echo "${DS} dictories,${FS} files"
+
+node $GITHUB_WORKSPACE/node-script/genBlobHeader.js "osx 64" out.gn/arm64.release/snapshot_blob.bin
+
+mkdir -p output/v8/Inc/Blob/macOS_arm64
+cp SnapshotBlob.h output/v8/Inc/Blob/macOS_arm64/
 
 mkdir -p output/v8/Lib/macOS_arm64
 cd output/v8/Lib/macOS_arm64
@@ -79,7 +79,4 @@ ar -rcsD libwee8.a out.gn/arm64.release/obj/src/inspector/inspector/*.o
 ar -rcsD libwee8.a out.gn/arm64.release/obj/third_party/icu/icuuc/*.o
 ar -rcsD libwee8.a out.gn/arm64.release/obj/third_party/icu/icui18n/*.o
 
-node $GITHUB_WORKSPACE/node-script/genBlobHeader.js "osx 64" out.gn/arm64.release/snapshot_blob.bin
 
-mkdir -p output/v8/Inc/Blob/macOS_arm64
-cp SnapshotBlob.h output/v8/Inc/Blob/macOS_arm64/

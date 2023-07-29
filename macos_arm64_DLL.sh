@@ -49,24 +49,19 @@ ninja -C out.gn/arm64.release v8
 #number of directories and files
 DS=0
 FS=0
-#1st param, the dir name
-#2nd param, the aligning space
-function listFiles(){
-    for file in `ls "$1"`
-    do
-        if [ -d "$1/${file}" ];then
-            echo "$2${file}"
-            ((DS++))
-            listFiles "$1/${file}" " $2"
-        else
-            echo "$2${file}"
-            ((FS++))
-        fi
-    done    
-    
-}
-var=out.gn/arm64.release
-listFiles $var "    "
+var1="out.gn/arm64.release"
+var2="    "
+for file in `ls "$var1"`
+do
+    if [ -d "$var1/${file}" ];then
+        echo "$var2${file}"
+        ((DS++))
+        listFiles "$var1/${file}" " $var2"
+    else
+        echo "$var2${file}"
+        ((FS++))
+    fi
+done 
 echo "${DS} dictories,${FS} files"
 
 mkdir -p output/v8/Lib/macOSArm64dylib
