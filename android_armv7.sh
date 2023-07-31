@@ -81,5 +81,9 @@ mkdir -p output/v8/Lib/Android/armeabi-v7a
 cp out.gn/arm.release/obj/libwee8.a output/v8/Lib/Android/armeabi-v7a/
 cp out.gn/arm.release/obj/third_party/icu/libicuuc.a output/v8/Lib/Android/armeabi-v7a/
 cp out.gn/arm.release/obj/third_party/icu/libicui18n.a output/v8/Lib/Android/armeabi-v7a/
+
+ar -rcsD output/v8/Lib/Android/armeabi-v7a/libicuuc1.a out.gn/arm.release/obj/third_party/icu/icuuc/*.o
+ar -rcsD output/v8/Lib/Android/armeabi-v7a/libicui18n1.a out.gn/arm.release/obj/third_party/icu/icui18n/*.o
+
 mkdir -p output/v8/Inc/Blob/Android/armv7a
 cp SnapshotBlob.h output/v8/Inc/Blob/Android/armv7a/

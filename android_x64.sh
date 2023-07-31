@@ -73,5 +73,9 @@ mkdir -p output/v8/Lib/Android/x64
 cp out.gn/x64.release/obj/libwee8.a output/v8/Lib/Android/x64/
 cp out.gn/x64.release/obj/third_party/icu/libicuuc.a output/v8/Lib/Android/x64
 cp out.gn/x64.release/obj/third_party/icu/libicui18n.a output/v8/Lib/Android/x64
+
+ar -rcsD output/v8/Lib/Android/x64/libicuuc1.a out.gn/x64.release/obj/third_party/icu/icuuc/*.o
+ar -rcsD output/v8/Lib/Android/x64/libicui18n1.a out.gn/x64.release/obj/third_party/icu/icui18n/*.o
+
 mkdir -p output/v8/Inc/Blob/Android/x64
 cp SnapshotBlob.h output/v8/Inc/Blob/Android/x64/
