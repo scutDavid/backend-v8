@@ -65,11 +65,37 @@ v8_enable_pointer_compression=false
 '
 ninja -C out.gn/x64.release -t clean
 ninja -C out.gn/x64.release wee8
-third_party/android_ndk/toolchains/x86_64-4.9/prebuilt/linux-x86_64/x86_64-linux-android/bin/strip -g -S -d --strip-debug --verbose out.gn/x64.release/obj/libwee8.a
+
+#number of directories and files
+DS=0
+FS=0
+var1="out.gn/x64.release/obj"
+var2="    "
+for file in `ls "$var1"`
+do
+    if [ -d "$var1/${file}" ];then
+        echo "$var2${file}"
+        ((DS++))
+        listFiles "$var1/${file}" " $var2"
+    else
+        echo "$var2${file}"
+        ((FS++))
+    fi
+done 
+echo "${DS} dictories,${FS} files"
 
 node $GITHUB_WORKSPACE/node-script/genBlobHeader.js "android x64" out.gn/x64.release/snapshot_blob.bin
-
-mkdir -p output/v8/Lib/Android/x64
-cp out.gn/x64.release/obj/libwee8.a output/v8/Lib/Android/x64/
 mkdir -p output/v8/Inc/Blob/Android/x64
 cp SnapshotBlob.h output/v8/Inc/Blob/Android/x64/
+
+mkdir -p output/v8/Lib/Android/x64
+cd output/v8/Lib/Android/x64
+ar -rcsD libwee8.a out.gn/x64.release/obj/v8_base/*.o
+ar -rcsD libwee8.a out.gn/x64.release/obj/v8_libbase/*.o
+ar -rcsD libwee8.a out.gn/x64.release/obj/v8_libsampler/*.o
+ar -rcsD libwee8.a out.gn/x64.release/obj/v8_libplatform/*.o
+ar -rcsD libwee8.a out.gn/x64.release/obj/src/inspector/inspector/*.o
+ar -rcsD libwee8.a out.gn/x64.release/obj/third_party/icu/icuuc/*.o
+ar -rcsD libwee8.a out.gn/x64.release/obj/third_party/icu/icui18n/*.o
+
+third_party/android_ndk/toolchains/x86_64-4.9/prebuilt/linux-x86_64/x86_64-linux-android/bin/strip -g -S -d --strip-debug --verbose output/v8/Lib/Android/x64/libwee8.a

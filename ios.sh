@@ -43,11 +43,38 @@ libcxx_abi_unstable = false
 '
 ninja -C out.gn/arm64.release -t clean
 ninja -C out.gn/arm64.release wee8
-strip -S out.gn/arm64.release/obj/libwee8.a
+
+#number of directories and files
+DS=0
+FS=0
+var1="out.gn/arm64.release/obj"
+var2="    "
+for file in `ls "$var1"`
+do
+    if [ -d "$var1/${file}" ];then
+        echo "$var2${file}"
+        ((DS++))
+        listFiles "$var1/${file}" " $var2"
+    else
+        echo "$var2${file}"
+        ((FS++))
+    fi
+done 
+echo "${DS} dictories,${FS} files"
 
 node $GITHUB_WORKSPACE/node-script/genBlobHeader.js "ios arm64" out.gn/arm64.release/snapshot_blob.bin
 
-mkdir -p output/v8/Lib/iOS/arm64
-cp out.gn/arm64.release/obj/libwee8.a output/v8/Lib/iOS/arm64/
 mkdir -p output/v8/Inc/Blob/iOS/arm64
 cp SnapshotBlob.h output/v8/Inc/Blob/iOS/arm64/
+
+mkdir -p output/v8/Lib/iOS/arm64
+cd output/v8/Lib/iOS/arm64
+ar -rcsD libwee8.a out.gn/arm64.release/obj/v8_base/*.o
+ar -rcsD libwee8.a out.gn/arm64.release/obj/v8_libbase/*.o
+ar -rcsD libwee8.a out.gn/arm64.release/obj/v8_libsampler/*.o
+ar -rcsD libwee8.a out.gn/arm64.release/obj/v8_libplatform/*.o
+ar -rcsD libwee8.a out.gn/arm64.release/obj/src/inspector/inspector/*.o
+ar -rcsD libwee8.a out.gn/arm64.release/obj/third_party/icu/icuuc/*.o
+ar -rcsD libwee8.a out.gn/arm64.release/obj/third_party/icu/icui18n/*.o
+
+strip -S out.gn/arm64.release/obj/libwee8.a

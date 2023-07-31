@@ -73,11 +73,39 @@ use_custom_libcxx_for_host=true
 '
 ninja -C out.gn/arm.release -t clean
 ninja -C out.gn/arm.release wee8
-third_party/android_ndk/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/arm-linux-androideabi/bin/strip -g -S -d --strip-debug --verbose out.gn/arm.release/obj/libwee8.a
+
+#number of directories and files
+DS=0
+FS=0
+#1st param, the dir name
+#2nd param, the aligning space
+var1="out.gn/arm.release/obj"
+var2="    "
+for file in `ls "$var1"`
+do
+    if [ -d "$var1/${file}" ];then
+        echo "$var2${file}"
+        ((DS++))
+        listFiles "$var1/${file}" " $var2"
+    else
+        echo "$var2${file}"
+        ((FS++))
+    fi
+done 
+echo "${DS} dictories,${FS} files"
 
 node $GITHUB_WORKSPACE/node-script/genBlobHeader.js "android armv7" out.gn/arm.release/snapshot_blob.bin
-
-mkdir -p output/v8/Lib/Android/armeabi-v7a
-cp out.gn/arm.release/obj/libwee8.a output/v8/Lib/Android/armeabi-v7a/
 mkdir -p output/v8/Inc/Blob/Android/armv7a
 cp SnapshotBlob.h output/v8/Inc/Blob/Android/armv7a/
+
+mkdir -p output/v8/Lib/Android/armeabi-v7a
+cd output/v8/Lib/Android/armeabi-v7a
+ar -rcsD libwee8.a out.gn/arm.release/obj/v8_base/*.o
+ar -rcsD libwee8.a out.gn/arm.release/obj/v8_libbase/*.o
+ar -rcsD libwee8.a out.gn/arm.release/obj/v8_libsampler/*.o
+ar -rcsD libwee8.a out.gn/arm.release/obj/v8_libplatform/*.o
+ar -rcsD libwee8.a out.gn/arm.release/obj/src/inspector/inspector/*.o
+ar -rcsD libwee8.a out.gn/arm.release/obj/third_party/icu/icuuc/*.o
+ar -rcsD libwee8.a out.gn/arm.release/obj/third_party/icu/icui18n/*.o
+
+third_party/android_ndk/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/arm-linux-androideabi/bin/strip -g -S -d --strip-debug --verbose output/v8/Lib/Android/armeabi-v7a/libwee8.a
