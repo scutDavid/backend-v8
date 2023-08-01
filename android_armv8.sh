@@ -77,5 +77,13 @@ cp out.gn/arm64.release/obj/third_party/icu/libicui18n.a output/v8/Lib/Android/a
 ar -rcsD output/v8/Lib/Android/arm64-v8a/libicuuc1.a out.gn/arm64.release/obj/third_party/icu/icuuc/*.o
 ar -rcsD output/v8/Lib/Android/arm64-v8a/libicui18n1.a out.gn/arm64.release/obj/third_party/icu/icui18n/*.o
 
+ar -rcsD output/v8/Lib/Android/arm64-v8a/libwee81.a out.gn/arm64.release/obj/v8_base/*.o
+ar -rcsD output/v8/Lib/Android/arm64-v8a/libwee81.a out.gn/arm64.release/obj/v8_libbase/*.o
+ar -rcsD output/v8/Lib/Android/arm64-v8a/libwee81.a out.gn/arm64.release/obj/v8_libsampler/*.o
+ar -rcsD output/v8/Lib/Android/arm64-v8a/libwee81.a out.gn/arm64.release/obj/v8_libplatform/*.o
+ar -rcsD output/v8/Lib/Android/arm64-v8a/libwee81.a out.gn/arm64.release/obj/src/inspector/inspector/*.o
+ar -rcsD output/v8/Lib/Android/arm64-v8a/libwee81.a out.gn/arm64.release/obj/third_party/icu/icuuc/*.o
+ar -rcsD output/v8/Lib/Android/arm64-v8a/libwee81.a out.gn/arm64.release/obj/third_party/icu/icui18n/*.o
+
 mkdir -p output/v8/Inc/Blob/Android/arm64
 cp SnapshotBlob.h output/v8/Inc/Blob/Android/arm64/
