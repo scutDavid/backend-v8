@@ -84,6 +84,7 @@ ar -rcsD output/v8/Lib/Android/arm64-v8a/libwee81.a out.gn/arm64.release/obj/v8_
 ar -rcsD output/v8/Lib/Android/arm64-v8a/libwee81.a out.gn/arm64.release/obj/src/inspector/inspector/*.o
 ar -rcsD output/v8/Lib/Android/arm64-v8a/libwee81.a out.gn/arm64.release/obj/third_party/icu/icuuc/*.o
 ar -rcsD output/v8/Lib/Android/arm64-v8a/libwee81.a out.gn/arm64.release/obj/third_party/icu/icui18n/*.o
+ar -rcsD output/v8/Lib/Android/arm64-v8a/libwee81.a out.gn/arm64.release/obj/v8_snapshot/*.o
 
 mkdir -p output/v8/Inc/Blob/Android/arm64
 cp SnapshotBlob.h output/v8/Inc/Blob/Android/arm64/
