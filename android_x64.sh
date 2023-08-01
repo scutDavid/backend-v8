@@ -74,7 +74,7 @@ cp out.gn/x64.release/obj/libwee8.a output/v8/Lib/Android/x64/
 cp out.gn/x64.release/obj/third_party/icu/libicuuc.a output/v8/Lib/Android/x64
 cp out.gn/x64.release/obj/third_party/icu/libicui18n.a output/v8/Lib/Android/x64
 
-ar -rcsD output/v8/Lib/Android/x64/libwee81.a out.gn/x64.release/obj/v8_base/*.o
+ar -rcsD output/v8/Lib/Android/x64/libwee81.a out.gn/x64.release/obj/v8_base_without_compiler/*.o
 ar -rcsD output/v8/Lib/Android/x64/libwee81.a out.gn/x64.release/obj/v8_libbase/*.o
 ar -rcsD output/v8/Lib/Android/x64/libwee81.a out.gn/x64.release/obj/v8_libsampler/*.o
 ar -rcsD output/v8/Lib/Android/x64/libwee81.a out.gn/x64.release/obj/v8_libplatform/*.o
