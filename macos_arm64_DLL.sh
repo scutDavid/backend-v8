@@ -47,6 +47,9 @@ ninja -C out.gn/arm64.release -t clean
 ninja -C out.gn/arm64.release v8
 
 mkdir -p output/v8/Lib/macOSArm64dylib
+cp out.gn/arm64.release/icudtl.dat output/v8/Lib/macOSArm64dylib/
+cp out.gn/arm64.release/libicuuc.dylib output/v8/Lib/macOSArm64dylib/
+cp out.gn/arm64.release/libicui18n.dylib output/v8/Lib/macOSArm64dylib/
 cp out.gn/arm64.release/libv8.dylib output/v8/Lib/macOSArm64dylib/
 cp out.gn/arm64.release/libv8_libplatform.dylib output/v8/Lib/macOSArm64dylib/
 cp out.gn/arm64.release/libv8_libbase.dylib output/v8/Lib/macOSArm64dylib/

@@ -54,5 +54,7 @@ node $GITHUB_WORKSPACE/node-script/genBlobHeader.js "ios arm64(bitcode)" out.gn/
 
 mkdir -p output/v8/Lib/iOS/bitcode
 cp out.gn/arm64.release/obj/libwee8.a output/v8/Lib/iOS/bitcode/
+cp out.gn/arm64.release/icudtl.dat output/v8/Lib/iOS/bitcode/
+
 mkdir -p output/v8/Inc/Blob/iOS/bitcode
 cp SnapshotBlob.h output/v8/Inc/Blob/iOS/bitcode/

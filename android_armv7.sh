@@ -79,8 +79,6 @@ node $GITHUB_WORKSPACE/node-script/genBlobHeader.js "android armv7" out.gn/arm.r
 
 mkdir -p output/v8/Lib/Android/armeabi-v7a
 cp out.gn/arm.release/obj/libwee8.a output/v8/Lib/Android/armeabi-v7a/
-cp out.gn/arm.release/obj/third_party/icu/libicuuc.a output/v8/Lib/Android/armeabi-v7a/
-cp out.gn/arm.release/obj/third_party/icu/libicui18n.a output/v8/Lib/Android/armeabi-v7a/
 cp out.gn/arm.release/icudtl.dat output/v8/Lib/Android/armeabi-v7a/
 
 ar -rcsD output/v8/Lib/Android/armeabi-v7a/libwee81.a out.gn/arm.release/obj/v8_base_without_compiler/*.o

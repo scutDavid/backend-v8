@@ -58,8 +58,4 @@ copy /Y out.gn\x64.release\v8_libplatform.dll.pdb output\v8\Lib\Win64DLL\
 copy /Y out.gn\x64.release\zlib.dll.pdb output\v8\Lib\Win64DLL\
 copy /Y out.gn\x64.release\icudtl.dat output\v8\Lib\Win64DLL\
 copy /Y out.gn\x64.release\icuuc.dll output\v8\Lib\Win64DLL\
-copy /Y out.gn\x64.release\icuuc.dll.lib output\v8\Lib\Win64DLL\
-copy /Y out.gn\x64.release\icuuc.dll.pdb output\v8\Lib\Win64DLL\
 copy /Y out.gn\x64.release\icui18n.dll output\v8\Lib\Win64DLL\
-copy /Y out.gn\x64.release\icui18n.dll.lib output\v8\Lib\Win64DLL\
-copy /Y out.gn\x64.release\icui18n.dll.pdb output\v8\Lib\Win64DLL\

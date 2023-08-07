@@ -53,6 +53,8 @@ node $GITHUB_WORKSPACE/node-script/genBlobHeader.js "Linux_arm64" out.gn/arm64.r
 
 mkdir -p output/v8/Lib/Linux_arm64
 cp out.gn/arm64.release/obj/libwee8.a output/v8/Lib/Linux_arm64/
+cp out.gn/arm64.release/icudtl.dat output/v8/Lib/Linux_arm64/
+
 mkdir -p output/v8/Inc/Blob/Linux_arm64
 cp SnapshotBlob.h output/v8/Inc/Blob/Linux_arm64/
 

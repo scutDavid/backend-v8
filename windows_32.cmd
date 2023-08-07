@@ -49,5 +49,6 @@ node %~dp0\node-script\genBlobHeader.js "window x86" out.gn\x86.release\snapshot
 
 md output\v8\Lib\Win32
 copy /Y out.gn\x86.release\obj\wee8.lib output\v8\Lib\Win32\
+copy /Y out.gn\x86.release\icudtl.dat output\v8\Lib\Win32\
 md output\v8\Inc\Blob\Win32
 copy SnapshotBlob.h output\v8\Inc\Blob\Win32\

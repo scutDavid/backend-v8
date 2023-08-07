@@ -45,7 +45,10 @@ ninja -C out.gn/x64.release -t clean
 ninja -C out.gn/x64.release v8
 
 mkdir -p output/v8/Lib/macOSdylib
+cp out.gn/x64.release/icudtl.dat output/v8/Lib/macOSdylib/
 cp out.gn/x64.release/libv8.dylib output/v8/Lib/macOSdylib/
+cp out.gn/x64.release/libicuuc.dylib output/v8/Lib/macOSdylib/
+cp out.gn/x64.release/libicui18n.dylib output/v8/Lib/macOSdylib/
 cp out.gn/x64.release/libv8_libplatform.dylib output/v8/Lib/macOSdylib/
 cp out.gn/x64.release/libv8_libbase.dylib output/v8/Lib/macOSdylib/
 cp out.gn/x64.release/libchrome_zlib.dylib output/v8/Lib/macOSdylib/
