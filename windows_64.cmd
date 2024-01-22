@@ -19,9 +19,9 @@ mkdir v8
 cd v8
 
 echo =====[ Fetching V8 ]=====
-call fetch v8
+call git clone https://github.com/scutDavid/v8
 cd v8
-call git checkout refs/tags/%VERSION%
+call git checkout origin/myv8_8.4
 cd test\test262\data
 call git config --system core.longpaths true
 call git restore *
