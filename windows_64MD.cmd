@@ -11,6 +11,7 @@ call gclient
 
 cd depot_tools
 call git reset --hard 8d16d4a
+powershell -Command "(gc fetch_configs/v8.py) -replace 'https://chromium.googlesource.com/v8/v8.git', 'https://github.com/scutDavid/v8' | Out-File -encoding ASCII fetch_configs/v8.py"
 cd ..
 set DEPOT_TOOLS_UPDATE=0
 
