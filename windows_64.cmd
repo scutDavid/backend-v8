@@ -11,6 +11,7 @@ call gclient
 
 cd depot_tools
 call git reset --hard 8d16d4a
+powershell -Command "(gc fetch_configs/v8.py) -replace 'https://chromium.googlesource.com/v8/v8.git', 'https://github.com/scutDavid/v8' | Out-File -encoding ASCII fetch_configs/v8.py"
 cd ..
 set DEPOT_TOOLS_UPDATE=0
 
@@ -19,9 +20,10 @@ mkdir v8
 cd v8
 
 echo =====[ Fetching V8 ]=====
-call git clone https://github.com/scutDavid/v8
+
+call fetch v8
 cd v8
-call git checkout myv8_8.4
+call git checkout cfr_v8_8.4
 cd test\test262\data
 call git config --system core.longpaths true
 call git restore *
