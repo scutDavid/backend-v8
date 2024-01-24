@@ -34,7 +34,7 @@ python ./tools/dev/v8gen.py x64.release -vv -- '
 is_debug = false
 v8_enable_i18n_support = true
 v8_use_snapshot = true
-v8_use_external_startup_data = true
+v8_use_external_startup_data = false
 v8_static_library = true
 strip_debug_info = true
 symbol_level=0

@@ -45,9 +45,6 @@ call gn gen out.gn\x86.release -args="target_os=""win"" target_cpu=""x86"" v8_us
 call ninja -C out.gn\x86.release -t clean
 call ninja -C out.gn\x86.release wee8
 
-node %~dp0\node-script\genBlobHeader.js "window x86" out.gn\x86.release\snapshot_blob.bin
-
 md output\v8\Lib\Win32
 copy /Y out.gn\x86.release\obj\wee8.lib output\v8\Lib\Win32\
 md output\v8\Inc\Blob\Win32
-copy SnapshotBlob.h output\v8\Inc\Blob\Win32\
