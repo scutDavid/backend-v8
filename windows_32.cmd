@@ -14,7 +14,7 @@ call git reset --hard 8d16d4a
 cd ..
 set DEPOT_TOOLS_UPDATE=0
 
-
+cd %HOMEPATH%
 mkdir v8
 cd v8
 
