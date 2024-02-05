@@ -1,6 +1,6 @@
 set VERSION=%1
 %HOMEDRIVE%
-cd %HOMEPATH%
+cd %HOMEDRIVE%%HOMEPATH%
 echo =====[ Getting Depot Tools ]=====
 powershell -command "Invoke-WebRequest https://storage.googleapis.com/chrome-infra/depot_tools.zip -O depot_tools.zip"
 7z x depot_tools.zip -o*
@@ -16,7 +16,7 @@ cd ..
 set DEPOT_TOOLS_UPDATE=0
 
 %HOMEDRIVE%
-cd %HOMEPATH%
+cd %HOMEDRIVE%%HOMEPATH%
 mkdir v8
 cd v8
 
