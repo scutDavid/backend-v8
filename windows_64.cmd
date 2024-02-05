@@ -25,7 +25,7 @@ echo =====[ Fetching V8 ]=====
 
 call fetch v8
 cd v8
-call git checkout cfr_v8_8.4
+call git checkout cfr_v8_8.4-lkgr
 cd test\test262\data
 call git config --system core.longpaths true
 call git restore *
