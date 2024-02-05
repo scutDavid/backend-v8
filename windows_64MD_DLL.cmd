@@ -1,5 +1,5 @@
 set VERSION=%1
-
+%HOMEDRIVE%
 cd %HOMEPATH%
 echo =====[ Getting Depot Tools ]=====
 powershell -command "Invoke-WebRequest https://storage.googleapis.com/chrome-infra/depot_tools.zip -O depot_tools.zip"
@@ -15,7 +15,8 @@ powershell -Command "(gc fetch_configs/v8.py) -replace 'https://chromium.googles
 cd ..
 set DEPOT_TOOLS_UPDATE=0
 
-
+%HOMEDRIVE%
+cd %HOMEPATH%
 mkdir v8
 cd v8
 
@@ -37,8 +38,8 @@ call gclient sync
 echo =====[ Make dynamic_crt ]=====
 node %~dp0\node-script\rep.js  build\config\win\BUILD.gn
 
-echo =====[ add ArrayBuffer_New_Without_Stl ]=====
-node %~dp0\node-script\add_arraybuffer_new_without_stl.js .
+@REM echo =====[ add ArrayBuffer_New_Without_Stl ]=====
+@REM node %~dp0\node-script\add_arraybuffer_new_without_stl.js .
 
 echo =====[ Building V8 ]=====
 call gn gen out.gn\x64.release -args="target_os=""win"" target_cpu=""x64"" v8_use_external_startup_data=true v8_enable_i18n_support=true is_debug=false is_clang=false strip_debug_info=true symbol_level=0 v8_enable_pointer_compression=false is_component_build=true"
