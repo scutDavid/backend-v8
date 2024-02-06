@@ -25,6 +25,12 @@ echo "=====[ Getting Depot Tools ]====="
 git clone -q https://chromium.googlesource.com/chromium/tools/depot_tools.git
 cd depot_tools
 git reset --hard 8d16d4a
+
+filename="fetch_configs/v8.py"
+old_string="https://chromium.googlesource.com/v8/v8.git" 
+new_string="https://github.com/scutDavid/v8"
+sed -i "s@$old_string@$new_string@g" $filename
+
 cd ..
 export DEPOT_TOOLS_UPDATE=0
 export PATH=$(pwd)/depot_tools:$PATH
@@ -39,7 +45,7 @@ fetch v8
 echo "target_os = ['android']" >> .gclient
 cd ~/v8/v8
 ./build/install-build-deps-android.sh
-git checkout refs/tags/$VERSION
+git checkout cfr_v8_8.4-lkgr
 
 echo "=====[ fix DEPS ]===="
 node -e "const fs = require('fs'); fs.writeFileSync('./DEPS', fs.readFileSync('./DEPS', 'utf-8').replace(\"Var('chromium_url') + '/external/github.com/kennethreitz/requests.git'\", \"'https://github.com/kennethreitz/requests'\"));"
@@ -51,8 +57,8 @@ gclient sync
 # git apply --cached $GITHUB_WORKSPACE/patches/builtins-puerts.patches
 # git checkout -- .
 
-echo "=====[ add ArrayBuffer_New_Without_Stl ]====="
-node $GITHUB_WORKSPACE/node-script/add_arraybuffer_new_without_stl.js .
+# echo "=====[ add ArrayBuffer_New_Without_Stl ]====="
+# node $GITHUB_WORKSPACE/node-script/add_arraybuffer_new_without_stl.js .
 
 echo "=====[ Building V8 ]====="
 python ./tools/dev/v8gen.py arm.release -vv -- '
