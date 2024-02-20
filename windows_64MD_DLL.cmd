@@ -1,5 +1,5 @@
 set VERSION=%1
-cd ..
+
 md v8\v8\output\v8\Lib\Win64DLL
 cd v8\v8\output\v8\Lib\Win64DLL
 cd > filename.txt
