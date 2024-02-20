@@ -132,7 +132,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: v8_bin
-        path: ${{ env.GITHUB_WORKSPACE }}/v8/v8/output/**/*
+        path: $Env:GITHUB_WORKSPACE/v8/v8/output/**/*
         
   build_windows_32:
     name: Windows-32
