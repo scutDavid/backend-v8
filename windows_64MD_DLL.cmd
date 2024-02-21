@@ -50,17 +50,17 @@ call gn gen out.gn\x64.release -args="target_os=""win"" target_cpu=""x64"" v8_us
 call ninja -C out.gn\x64.release -t clean
 call ninja -C out.gn\x64.release v8
 
-md %GITHUBPATH%\output\v8\Lib\Win64DLL
-copy /Y out.gn\x64.release\v8.dll.lib %GITHUBPATH%\output\v8\Lib\Win64DLL\
-copy /Y out.gn\x64.release\v8_libplatform.dll.lib %GITHUBPATH%\output\v8\Lib\Win64DLL\
-copy /Y out.gn\x64.release\v8.dll %GITHUBPATH%\output\v8\Lib\Win64DLL\
-copy /Y out.gn\x64.release\v8_libbase.dll %GITHUBPATH%\output\v8\Lib\Win64DLL\
-copy /Y out.gn\x64.release\v8_libplatform.dll %GITHUBPATH%\output\v8\Lib\Win64DLL\
-copy /Y out.gn\x64.release\zlib.dll %GITHUBPATH%\output\v8\Lib\Win64DLL\
-copy /Y out.gn\x64.release\v8.dll.pdb %GITHUBPATH%\output\v8\Lib\Win64DLL\
-copy /Y out.gn\x64.release\v8_libbase.dll.pdb %GITHUBPATH%\output\v8\Lib\Win64DLL\
-copy /Y out.gn\x64.release\v8_libplatform.dll.pdb %GITHUBPATH%\output\v8\Lib\Win64DLL\
-copy /Y out.gn\x64.release\zlib.dll.pdb %GITHUBPATH%\output\v8\Lib\Win64DLL\
-copy /Y out.gn\x64.release\icudtl.dat %GITHUBPATH%\output\v8\Lib\Win64DLL\
-copy /Y out.gn\x64.release\icuuc.dll %GITHUBPATH%\output\v8\Lib\Win64DLL\
-copy /Y out.gn\x64.release\icui18n.dll %GITHUBPATH%\output\v8\Lib\Win64DLL\
+md %GITHUBPATH%\v8\v8\output\v8\Lib\Win64DLL
+copy /Y out.gn\x64.release\v8.dll.lib %GITHUBPATH%\v8\v8\output\v8\Lib\Win64DLL\
+copy /Y out.gn\x64.release\v8_libplatform.dll.lib %GITHUBPATH%\v8\v8\output\v8\Lib\Win64DLL\
+copy /Y out.gn\x64.release\v8.dll %GITHUBPATH%\v8\v8\output\v8\Lib\Win64DLL\
+copy /Y out.gn\x64.release\v8_libbase.dll %GITHUBPATH%\v8\v8\output\v8\Lib\Win64DLL\
+copy /Y out.gn\x64.release\v8_libplatform.dll %GITHUBPATH%\v8\v8\output\v8\Lib\Win64DLL\
+copy /Y out.gn\x64.release\zlib.dll %GITHUBPATH%\v8\v8\output\v8\Lib\Win64DLL\
+copy /Y out.gn\x64.release\v8.dll.pdb %GITHUBPATH%\v8\v8\output\v8\Lib\Win64DLL\
+copy /Y out.gn\x64.release\v8_libbase.dll.pdb %GITHUBPATH%\v8\v8\output\v8\Lib\Win64DLL\
+copy /Y out.gn\x64.release\v8_libplatform.dll.pdb %GITHUBPATH%\v8\v8\output\v8\Lib\Win64DLL\
+copy /Y out.gn\x64.release\zlib.dll.pdb %GITHUBPATH%\v8\v8\output\v8\Lib\Win64DLL\
+copy /Y out.gn\x64.release\icudtl.dat %GITHUBPATH%\v8\v8\output\v8\Lib\Win64DLL\
+copy /Y out.gn\x64.release\icuuc.dll %GITHUBPATH%\v8\v8\output\v8\Lib\Win64DLL\
+copy /Y out.gn\x64.release\icui18n.dll %GITHUBPATH%\v8\v8\output\v8\Lib\Win64DLL\
