@@ -7,8 +7,15 @@ git clone -q https://chromium.googlesource.com/chromium/tools/depot_tools.git
 cd depot_tools
 git reset --hard 8d16d4a
 
-echo "=====[ add ArrayBuffer_New_Without_Stl ]====="
-node $GITHUB_WORKSPACE/node-script/add_arraybuffer_new_without_stl.js ~/depot_tools
+filename="fetch_configs/v8.py"
+old_string="https://chromium.googlesource.com/v8/v8.git" 
+new_string="https://github.com/scutDavid/v8"
+sed -i "1.bak" "s@$old_string@$new_string@g" $filename
+# echo "=====[ add ArrayBuffer_New_Without_Stl ]====="
+# node $GITHUB_WORKSPACE/node-script/add_arraybuffer_new_without_stl.js ~/depot_tools
+
+# echo "=====[ switch v8.git ]====="
+# node $GITHUB_WORKSPACE/node-script/switch_v8_git.js ~/depot_tools
 
 cd ..
 export DEPOT_TOOLS_UPDATE=0

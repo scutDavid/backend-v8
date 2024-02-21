@@ -10,7 +10,9 @@ git reset --hard 8d16d4a
 filename="fetch_configs/v8.py"
 old_string="https://chromium.googlesource.com/v8/v8.git" 
 new_string="https://github.com/scutDavid/v8"
-sed -i "s@$old_string@$new_string@g" $filename
+sed -i "1.bak" "s@$old_string@$new_string@g" $filename
+# echo "=====[ switch v8.git ]====="
+# node $GITHUB_WORKSPACE/node-script/switch_v8_git.js .
 
 cd ..
 export DEPOT_TOOLS_UPDATE=0
