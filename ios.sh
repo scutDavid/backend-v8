@@ -22,11 +22,11 @@ export DEPOT_TOOLS_UPDATE=0
 export PATH=$(pwd)/depot_tools:$PATH
 export PATH=$(pwd)/depot_tools/.cipd_bin/2.7/bin:$PATH
 
-# export PYTHON=$(pwd)/depot_tools/.cipd_bin/2.7/bin/python.exe
-# $PYTHON --version
+export PYTHON=$(pwd)/depot_tools/.cipd_bin/2.7/bin/python
+$PYTHON --version
 
-# export PYTHON2=$(pwd)/depot_tools/.cipd_bin/3.8/bin/python3.exe
-# $PYTHON2 --version
+export PYTHON2=$(pwd)/depot_tools/.cipd_bin/3.8/bin/python3
+$PYTHON2 --version
 gclient
 
 mkdir v8
@@ -47,7 +47,7 @@ gclient sync
 # node $GITHUB_WORKSPACE/node-script/add_arraybuffer_new_without_stl.js .
 
 echo "=====[ Building V8 ]====="
-python ./tools/dev/v8gen.py arm64.release -vv -- '
+$PYTHON ./tools/dev/v8gen.py arm64.release -vv -- '
 v8_use_external_startup_data = true
 v8_use_snapshot = true
 v8_enable_i18n_support = true
