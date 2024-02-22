@@ -20,8 +20,12 @@ sed -i "1.bak" "s@$old_string@$new_string@g" $filename
 cd ..
 export DEPOT_TOOLS_UPDATE=0
 export PATH=$(pwd)/depot_tools:$PATH
-export PATH=$(pwd)/depot_tools/.cipd_bin/2.7/bin:$PATH
-python --version
+# export PATH=$(pwd)/depot_tools/.cipd_bin/2.7/bin:$PATH
+export PYTHON=""$(pwd)"/depot_tools/.cipd_bin/2.7/bin/python.exe":$PYTHON
+$PYTHON --version
+
+export PYTHON2=""$(pwd)"/depot_tools/.cipd_bin/3.8/bin/python3.exe":$PYTHON2
+$PYTHON2 --version
 gclient
 
 # mkdir v8
