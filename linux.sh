@@ -14,7 +14,7 @@ sed -i "s@$old_string@$new_string@g" $filename
 
 cd ..
 export DEPOT_TOOLS_UPDATE=0
-export PATH=$(pwd)/depot_tools:$(pwd)/depot_tools/.cipd_bin/2.7/bin:$PATH
+export PATH=$(pwd)/depot_tools:$(pwd)/depot_tools/python2-bin/python2:$PATH
 gclient
 
 
