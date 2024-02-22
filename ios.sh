@@ -20,7 +20,7 @@ sed -i "1.bak" "s@$old_string@$new_string@g" $filename
 cd ..
 export DEPOT_TOOLS_UPDATE=0
 export PATH=$(pwd)/depot_tools:$PATH
-export PATH=$(pwd)/depot_tools/python2-bin/python2:$PATH
+export VPYTHON_BYPASS="manually managed python not supported by chrome operations"
 
 export PYTHON=$(pwd)/depot_tools/python2-bin/python2
 $PYTHON --version
@@ -47,7 +47,7 @@ gclient sync
 # node $GITHUB_WORKSPACE/node-script/add_arraybuffer_new_without_stl.js .
 
 echo "=====[ Building V8 ]====="
-$PYTHON ./tools/dev/v8gen.py arm64.release -vv -- '
+python ./tools/dev/v8gen.py arm64.release -vv -- '
 v8_use_external_startup_data = true
 v8_use_snapshot = true
 v8_enable_i18n_support = true
