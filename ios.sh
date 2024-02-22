@@ -20,13 +20,9 @@ sed -i "1.bak" "s@$old_string@$new_string@g" $filename
 cd ..
 export DEPOT_TOOLS_UPDATE=0
 export PATH=$(pwd)/depot_tools:$PATH
-export VPYTHON_BYPASS="manually managed python not supported by chrome operations"
 
-export PYTHON=$(pwd)/depot_tools/python2-bin/python2
-$PYTHON --version
+python2 --version
 
-export PYTHON3=$(pwd)/depot_tools/python-bin/python3
-$PYTHON3 --version
 gclient
 
 mkdir v8
