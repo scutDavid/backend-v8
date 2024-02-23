@@ -49,8 +49,8 @@ sed -i "2.bak" "s@$old_string@$new_string@g" $filename2
 
 echo "=====[ Building V8 ]====="
 echo "=====[ vpython version ]====="
-python --version
-python ./tools/dev/v8gen.py arm64.release -vv -- '
+vpython --version
+vpython ./tools/dev/v8gen.py arm64.release -vv -- '
 v8_use_external_startup_data = true
 v8_use_snapshot = true
 v8_enable_i18n_support = true
