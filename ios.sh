@@ -24,7 +24,8 @@ export PATH=$(pwd)/depot_tools:$PATH
 python2 --version
 python2 -m ensurepip --upgrade --user
 python2 -m pip -V
-python2 -m pip install setuptools
+python2 -m pip install setuptools --user
+python2 -m pip install pkg_resources --user
 gclient
 
 mkdir v8
