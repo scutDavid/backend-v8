@@ -21,7 +21,7 @@ cd ..
 export DEPOT_TOOLS_UPDATE=0
 export PATH=$(pwd)/depot_tools:$PATH
 echo "=====[ python version ]====="
-python --version
+/Users/runner/depot_tools/.cipd bi/2.7/bin/python --version
 
 gclient
 
@@ -47,21 +47,23 @@ sed -i "2.bak" "s@$old_string@$new_string@g" $filename2
 # echo "=====[ add ArrayBuffer_New_Without_Stl ]====="
 # node $GITHUB_WORKSPACE/node-script/add_arraybuffer_new_without_stl.js .
 
-# echo "=====[ Building V8 ]====="
-# python ./tools/dev/v8gen.py arm64.release -vv -- '
-# v8_use_external_startup_data = true
-# v8_use_snapshot = true
-# v8_enable_i18n_support = true
-# is_debug = false
-# v8_static_library = true
-# ios_enable_code_signing = false
-# target_os = "ios"
-# target_cpu = "arm64"
-# v8_enable_pointer_compression = false
-# libcxx_abi_unstable = false
-# '
+echo "=====[ Building V8 ]====="
+echo "=====[ 111 python version ]====="
+/Users/runner/depot_tools/.cipd bi/2.7/bin/python --version
+/Users/runner/depot_tools/.cipd bi/2.7/bin/python ./tools/dev/v8gen.py arm64.release -vv -- '
+v8_use_external_startup_data = true
+v8_use_snapshot = true
+v8_enable_i18n_support = true
+is_debug = false
+v8_static_library = true
+ios_enable_code_signing = false
+target_os = "ios"
+target_cpu = "arm64"
+v8_enable_pointer_compression = false
+libcxx_abi_unstable = false
+'
 
-gn gen out.gn/arm64.release --args='v8_use_external_startup_data=true v8_use_snapshot=true v8_enable_i18n_support=true is_debug=false v8_static_library=true ios_enable_code_signing=false target_os="ios" target_cpu="arm64" v8_enable_pointer_compression=false libcxx_abi_unstable=false'
+# gn gen out.gn/arm64.release --args='v8_use_external_startup_data=true v8_use_snapshot=true v8_enable_i18n_support=true is_debug=false v8_static_library=true ios_enable_code_signing=false target_os="ios" target_cpu="arm64" v8_enable_pointer_compression=false libcxx_abi_unstable=false'
 
 ninja -C out.gn/arm64.release -t clean
 ninja -C out.gn/arm64.release wee8
