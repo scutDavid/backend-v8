@@ -21,7 +21,7 @@ cd ..
 export DEPOT_TOOLS_UPDATE=0
 export PATH=$(pwd)/depot_tools:$PATH
 echo "=====[ python version ]====="
-/Users/runner/depot_tools/.cipd bi/2.7/bin/python --version
+python --version
 
 gclient
 
@@ -34,7 +34,7 @@ echo "target_os = ['ios']" >> .gclient
 cd ~/v8/v8
 git checkout cfr_v8_8.4-lkgr
 gclient sync
-
+echo 'script_executable = "vpython"' >> .gn
 filename2="tools/mb/mb.py"
 old_string="import urllib2" 
 new_string="try:\r\n  import urllib2 as urllib\r\nexcept ImportError:  # For Py3 compatibility\r\n  import urllib.request as urllib"
@@ -48,9 +48,9 @@ sed -i "2.bak" "s@$old_string@$new_string@g" $filename2
 # node $GITHUB_WORKSPACE/node-script/add_arraybuffer_new_without_stl.js .
 
 echo "=====[ Building V8 ]====="
-echo "=====[ 111 python version ]====="
-/Users/runner/depot_tools/.cipd bi/2.7/bin/python --version
-/Users/runner/depot_tools/.cipd bi/2.7/bin/python ./tools/dev/v8gen.py arm64.release -vv -- '
+echo "=====[ vpython version ]====="
+python --version
+python ./tools/dev/v8gen.py arm64.release -vv -- '
 v8_use_external_startup_data = true
 v8_use_snapshot = true
 v8_enable_i18n_support = true
