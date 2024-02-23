@@ -35,10 +35,6 @@ cd ~/v8/v8
 git checkout cfr_v8_8.4-lkgr
 gclient sync
 echo 'script_executable = "vpython"' >> .gn
-filename2="tools/mb/mb.py"
-old_string="import urllib2" 
-new_string="try:\r\n  import urllib2 as urllib\r\nexcept ImportError:  # For Py3 compatibility\r\n  import urllib.request as urllib"
-sed -i "2.bak" "s@$old_string@$new_string@g" $filename2
 
 # echo "=====[ Patching V8 ]====="
 # git apply --cached $GITHUB_WORKSPACE/patches/builtins-puerts.patches

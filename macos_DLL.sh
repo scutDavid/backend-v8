@@ -30,7 +30,7 @@ echo "target_os = ['mac']" >> .gclient
 cd ~/v8/v8
 git checkout cfr_v8_8.4-lkgr
 gclient sync
-
+echo 'script_executable = "vpython"' >> .gn
 # echo "=====[ Patching V8 ]====="
 # git apply --cached $GITHUB_WORKSPACE/patches/builtins-puerts.patches
 # git checkout -- .
@@ -39,7 +39,7 @@ gclient sync
 # node $GITHUB_WORKSPACE/node-script/add_arraybuffer_new_without_stl.js .
 
 echo "=====[ Building V8 ]====="
-python ./tools/dev/v8gen.py x64.release -vv -- '
+vpython ./tools/dev/v8gen.py x64.release -vv -- '
 is_debug = false
 v8_enable_i18n_support = true
 v8_use_snapshot = true

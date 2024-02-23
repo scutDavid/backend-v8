@@ -28,7 +28,7 @@ echo "target_os = ['mac-arm64']" >> .gclient
 cd ~/v8/v8
 git checkout cfr_v8_8.4-lkgr
 gclient sync
-
+echo 'script_executable = "vpython"' >> .gn
 # echo "=====[ Patching V8 ]====="
 # git apply --cached $GITHUB_WORKSPACE/patches/builtins-puerts.patches
 # git checkout -- .
@@ -37,7 +37,7 @@ gclient sync
 # node $GITHUB_WORKSPACE/node-script/add_arraybuffer_new_without_stl.js .
 
 echo "=====[ Building V8 ]====="
-python ./tools/dev/v8gen.py arm64.release -vv -- '
+vpython ./tools/dev/v8gen.py arm64.release -vv -- '
 is_debug = false
 target_cpu = "arm64"
 v8_target_cpu = "arm64"
