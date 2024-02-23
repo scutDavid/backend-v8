@@ -24,7 +24,7 @@ export PATH=$(pwd)/depot_tools:$PATH
 python2 --version
 python2 -m ensurepip --upgrade --user
 python2 -m pip -V
-python2 -m pip install --upgrade pip setuptools wheel --user
+
 gclient
 
 mkdir v8
@@ -45,7 +45,7 @@ gclient sync
 # node $GITHUB_WORKSPACE/node-script/add_arraybuffer_new_without_stl.js .
 
 echo "=====[ Building V8 ]====="
-
+python2 -m pip install --upgrade pip setuptools wheel --user
 python2 ./tools/dev/v8gen.py arm64.release -vv -- '
 v8_use_external_startup_data = true
 v8_use_snapshot = true
