@@ -20,12 +20,8 @@ sed -i "1.bak" "s@$old_string@$new_string@g" $filename
 cd ..
 export DEPOT_TOOLS_UPDATE=0
 export PATH=$(pwd)/depot_tools:$PATH
-export PATH=/Users/runner/Library/Python/2.7/bin:$PATH
-
-python2 --version
-python2 -m ensurepip --upgrade --user
-echo "=====[ Cur pip ]====="
-python2 -m pip -V
+echo "=====[ python version ]====="
+python --version
 
 gclient
 
@@ -39,6 +35,11 @@ cd ~/v8/v8
 git checkout cfr_v8_8.4-lkgr
 gclient sync
 
+filename2="tools/mb/mb.py"
+old_string="import urllib2" 
+new_string="try:\r\n  import urllib2 as urllib\r\nexcept ImportError:  # For Py3 compatibility\r\n  import urllib.request as urllib"
+sed -i "2.bak" "s@$old_string@$new_string@g" $filename2
+
 # echo "=====[ Patching V8 ]====="
 # git apply --cached $GITHUB_WORKSPACE/patches/builtins-puerts.patches
 # git checkout -- .
@@ -47,10 +48,7 @@ gclient sync
 # node $GITHUB_WORKSPACE/node-script/add_arraybuffer_new_without_stl.js .
 
 echo "=====[ Building V8 ]====="
-python2 -m pip install --upgrade pip setuptools wheel
-echo "=====[ New pip ]====="
-python2 -m pip -V
-python2 ./tools/dev/v8gen.py arm64.release -vv -- '
+python ./tools/dev/v8gen.py arm64.release -vv -- '
 v8_use_external_startup_data = true
 v8_use_snapshot = true
 v8_enable_i18n_support = true
