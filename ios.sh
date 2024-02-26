@@ -52,8 +52,7 @@ old_string="return True"
 new_string=""
 sed -i "2.bak""s@$old_string@$new_string@g" $filename2
 old_string="if pattern.match(line):" 
-new_string="if isinstance(line, bytes):\r\n        line = line.decode('utf-8')\r\n        print(1, line)\r\n    elif isinstance(line, str):\r\n        print(2, line)\r\n    try:\r\n        if pattern.match(line):\r\n            return True\r\n    except AttributeError as e:\r\n        print(3, line)\r\n        return True"
-sed -i "3.bak" "s@$old_string@$new_string@g" $filename2
+new_string="if isinstance(line, bytes):\r\n        line = line.decode('utf-8')\r\n        print(1, line)\r\n    elif isinstance(line, str):\r\n        print(2, line)\r\n    try:\r\n        if pattern.match(line):\r\n          return True\r\n    except AttributeError as e:\r\n        print(3, line)\r\n        return True"sed -i "3.bak" "s@$old_string@$new_string@g" $filename2
 
 vpython ./tools/dev/v8gen.py arm64.release -vv -- '
 v8_use_external_startup_data = true
