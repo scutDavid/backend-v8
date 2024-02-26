@@ -31,6 +31,15 @@ cd ~/v8/v8
 git checkout cfr_v8_8.4-lkgr
 gclient sync
 echo 'script_executable = "vpython"' >> .gn
+
+old_string="if pattern.match(line):" 
+new_string="line = line.decode('utf-8')\r\n    if pattern.match(line):"
+filename2="build/toolchain/mac/filter_libtool.py"
+sed -i "2.bak" "s@$old_string@$new_string@g" $filename2
+
+filename3="build/toolchain/apple/filter_libtool.py"
+sed -i "3.bak" "s@$old_string@$new_string@g" $filename3
+
 # echo "=====[ Patching V8 ]====="
 # git apply --cached $GITHUB_WORKSPACE/patches/builtins-puerts.patches
 # git checkout -- .

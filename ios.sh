@@ -46,6 +46,15 @@ echo 'script_executable = "vpython"' >> .gn
 echo "=====[ Building V8 ]====="
 echo "=====[ vpython version ]====="
 vpython --version
+
+old_string="if pattern.match(line):" 
+new_string="line = line.decode('utf-8')\r\n    if pattern.match(line):"
+filename2="build/toolchain/mac/filter_libtool.py"
+sed -i "2.bak" "s@$old_string@$new_string@g" $filename2
+
+filename3="build/toolchain/apple/filter_libtool.py"
+sed -i "3.bak" "s@$old_string@$new_string@g" $filename3
+
 vpython ./tools/dev/v8gen.py arm64.release -vv -- '
 v8_use_external_startup_data = true
 v8_use_snapshot = true
