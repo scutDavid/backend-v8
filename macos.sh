@@ -32,7 +32,7 @@ git checkout cfr_v8_8.4-lkgr
 gclient sync
 echo 'script_executable = "vpython"' >> .gn
 
-filename2="build\toolchain\mac\filter_libtool.py"
+filename2="build/toolchain/mac/filter_libtool.py"
 old_string="return True" 
 new_string=""
 sed -i "2.bak""s@$old_string@$new_string@g" $filename2

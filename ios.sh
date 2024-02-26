@@ -47,7 +47,7 @@ echo "=====[ Building V8 ]====="
 echo "=====[ vpython version ]====="
 vpython --version
 
-filename2="build\toolchain\mac\filter_libtool.py"
+filename2="build/toolchain/mac/filter_libtool.py"
 old_string="return True" 
 new_string=""
 sed -i "2.bak""s@$old_string@$new_string@g" $filename2
