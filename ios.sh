@@ -48,7 +48,7 @@ echo "=====[ vpython version ]====="
 vpython --version
 
 old_string="if pattern.match(line):" 
-new_string="line = line.decode('utf-8')\r\n    if pattern.match(line):"
+new_string="line = line.encode().decode('utf-8')\r\n    if pattern.match(line):"
 filename2="build/toolchain/mac/filter_libtool.py"
 sed -i "2.bak" "s@$old_string@$new_string@g" $filename2
 
