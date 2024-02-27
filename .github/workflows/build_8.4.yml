@@ -97,12 +97,12 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: v8_bin
-        path: v8/v8/output/**/*
+        path: ${{ github.workspace }}/v8/v8/output/**/*
         
     - uses: actions/upload-artifact@v2
       with:
         name: v8_bin_win64
-        path: v8/v8/output/**/*
+        path: ${{ github.workspace }}/v8/v8/output/**/*
         
   build_windows_md:
     name: Windows-MD
@@ -117,7 +117,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: v8_bin
-        path: v8/v8/output/**/*
+        path: ${{ github.workspace }}/v8/v8/output/**/*
         
   build_windows_md_dll:
     name: Windows-MD-DLL
@@ -147,7 +147,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: v8_bin
-        path: v8/v8/output/**/*
+        path: ${{ github.workspace }}/v8/v8/output/**/*
           
   build_macos:
     name: macOS
