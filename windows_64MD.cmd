@@ -1,5 +1,5 @@
 set VERSION=%1
-
+set GITHUBPATH=%cd%
 %HOMEDRIVE%
 cd %HOMEDRIVE%%HOMEPATH%
 echo =====[ Getting Depot Tools ]=====
@@ -52,8 +52,8 @@ call ninja -C out.gn\x64.release wee8
 
 node %~dp0\node-script\genBlobHeader.js "window x64" out.gn\x64.release\snapshot_blob.bin
 
-md output\v8\Lib\Win64MD
-copy /Y out.gn\x64.release\obj\wee8.lib output\v8\Lib\Win64MD\
-copy /Y out.gn\x64.release\icudtl.dat output\v8\Lib\Win64MD\
-md output\v8\Inc\Blob\Win64MD
-copy SnapshotBlob.h output\v8\Inc\Blob\Win64MD\
+md %GITHUBPATH%\v8\v8\output\v8\Lib\Win64MD
+copy /Y out.gn\x64.release\obj\wee8.lib  %GITHUBPATH%\v8\v8\output\v8\Lib\Win64MD\
+copy /Y out.gn\x64.release\icudtl.dat  %GITHUBPATH%\v8\v8\output\v8\Lib\Win64MD\
+md %GITHUBPATH%\v8\v8\output\v8\Inc\Blob\Win64MD
+copy SnapshotBlob.h %GITHUBPATH%\v8\v8\output\v8\Inc\Blob\Win64MD\

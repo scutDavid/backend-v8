@@ -1,4 +1,5 @@
 set VERSION=%1
+set GITHUBPATH=%cd%
 %HOMEDRIVE%
 cd %HOMEDRIVE%%HOMEPATH%
 echo =====[ CurPath  %HOMEDRIVE%%HOMEPATH% ]=====
@@ -49,11 +50,11 @@ call ninja -C out.gn\x64.release wee8
 
 node %~dp0\node-script\genBlobHeader.js "window x64" out.gn\x64.release\snapshot_blob.bin
 
-md output\v8\Lib\Win64
-copy /Y out.gn\x64.release\obj\wee8.lib output\v8\Lib\Win64\
-copy /Y out.gn\x64.release\icudtl.dat output\v8\Lib\Win64\
+md %GITHUBPATH%\v8\v8\output\v8\Lib\Win64
+copy /Y out.gn\x64.release\obj\wee8.lib %GITHUBPATH%\v8\v8\output\v8\Lib\Win64\
+copy /Y out.gn\x64.release\icudtl.dat %GITHUBPATH%\v8\v8\output\v8\Lib\Win64\
 md output\v8\Inc\Blob\Win64
-copy SnapshotBlob.h output\v8\Inc\Blob\Win64\
+copy SnapshotBlob.h %GITHUBPATH%\v8\v8\output\v8\Inc\Blob\Win64\
 
 echo =====[ Copy V8 header ]=====
-xcopy include output\v8\Inc\  /s/h/e/k/f/c
+xcopy include %GITHUBPATH%\v8\v8\output\v8\Inc\  /s/h/e/k/f/c

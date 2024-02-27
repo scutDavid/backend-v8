@@ -1,5 +1,5 @@
 set VERSION=%1
-
+set GITHUBPATH=%cd%
 cd %HOMEPATH%
 echo =====[ Getting Depot Tools ]=====
 powershell -command "Invoke-WebRequest https://storage.googleapis.com/chrome-infra/depot_tools.zip -O depot_tools.zip"
@@ -49,8 +49,8 @@ call ninja -C out.gn\x86.release wee8
 
 node %~dp0\node-script\genBlobHeader.js "window x86" out.gn\x86.release\snapshot_blob.bin
 
-md output\v8\Lib\Win32
-copy /Y out.gn\x86.release\obj\wee8.lib output\v8\Lib\Win32\
-copy /Y out.gn\x86.release\icudtl.dat output\v8\Lib\Win32\
-md output\v8\Inc\Blob\Win32
-copy SnapshotBlob.h output\v8\Inc\Blob\Win32\
+md %GITHUBPATH%\v8\v8\output\v8\Lib\Win32
+copy /Y out.gn\x86.release\obj\wee8.lib %GITHUBPATH%\v8\v8\output\v8\Lib\Win32\
+copy /Y out.gn\x86.release\icudtl.dat %GITHUBPATH%\v8\v8\output\v8\Lib\Win32\
+md %GITHUBPATH%\v8\v8\output\v8\Inc\Blob\Win32
+copy SnapshotBlob.h %GITHUBPATH%\v8\v8\output\v8\Inc\Blob\Win32\
