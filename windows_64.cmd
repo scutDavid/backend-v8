@@ -43,18 +43,18 @@ call gclient sync
 @REM node %~dp0\node-script\add_arraybuffer_new_without_stl.js .
 
 echo =====[ Building V8 ]=====
-call gn gen out.gn\x64.release -args="target_os=""win"" target_cpu=""x64"" v8_use_external_startup_data=true v8_enable_i18n_support=true is_debug=false v8_static_library=true is_clang=false strip_debug_info=true symbol_level=0 v8_enable_pointer_compression=false"
+call gn gen out.gn\x64.release -args="target_os=""win"" target_cpu=""x64"" v8_use_external_startup_data=false v8_enable_i18n_support=true is_debug=false v8_static_library=true is_clang=false strip_debug_info=true symbol_level=0 v8_enable_pointer_compression=false"
 
 call ninja -C out.gn\x64.release -t clean
 call ninja -C out.gn\x64.release wee8
 
-node %~dp0\node-script\genBlobHeader.js "window x64" out.gn\x64.release\snapshot_blob.bin
+@REM node %~dp0\node-script\genBlobHeader.js "window x64" out.gn\x64.release\snapshot_blob.bin
 
 md %GITHUBPATH%\v8\v8\output\v8\Lib\Win64
 copy /Y out.gn\x64.release\obj\wee8.lib %GITHUBPATH%\v8\v8\output\v8\Lib\Win64\
 copy /Y out.gn\x64.release\icudtl.dat %GITHUBPATH%\v8\v8\output\v8\Lib\Win64\
-md output\v8\Inc\Blob\Win64
-copy SnapshotBlob.h %GITHUBPATH%\v8\v8\output\v8\Inc\Blob\Win64\
+@REM md output\v8\Inc\Blob\Win64
+@REM copy SnapshotBlob.h %GITHUBPATH%\v8\v8\output\v8\Inc\Blob\Win64\
 
 echo =====[ Copy V8 header ]=====
 xcopy include %GITHUBPATH%\v8\v8\output\v8\Inc\  /s/h/e/k/f/c

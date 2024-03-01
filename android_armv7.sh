@@ -69,7 +69,7 @@ v8_enable_i18n_support = true
 v8_target_cpu = "arm"
 use_goma = false
 v8_use_snapshot = true
-v8_use_external_startup_data = true
+v8_use_external_startup_data = false
 v8_static_library = true
 strip_absolute_paths_from_debug_symbols = false
 strip_debug_info = false
@@ -81,7 +81,7 @@ ninja -C out.gn/arm.release -t clean
 ninja -C out.gn/arm.release wee8
 third_party/android_ndk/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/arm-linux-androideabi/bin/strip -g -S -d --strip-debug --verbose out.gn/arm.release/obj/libwee8.a
 
-node $GITHUB_WORKSPACE/node-script/genBlobHeader.js "android armv7" out.gn/arm.release/snapshot_blob.bin
+# node $GITHUB_WORKSPACE/node-script/genBlobHeader.js "android armv7" out.gn/arm.release/snapshot_blob.bin
 
 mkdir -p output/v8/Lib/Android/armeabi-v7a
 cp out.gn/arm.release/obj/libwee8.a output/v8/Lib/Android/armeabi-v7a/
@@ -96,5 +96,5 @@ ar -rcsD output/v8/Lib/Android/armeabi-v7a/libwee81.a out.gn/arm.release/obj/thi
 ar -rcsD output/v8/Lib/Android/armeabi-v7a/libwee81.a out.gn/arm.release/obj/third_party/icu/icui18n/*.o
 ar -rcsD output/v8/Lib/Android/armeabi-v7a/libwee81.a out.gn/arm.release/obj/v8_snapshot/*.o
 
-mkdir -p output/v8/Inc/Blob/Android/armv7a
-cp SnapshotBlob.h output/v8/Inc/Blob/Android/armv7a/
+# mkdir -p output/v8/Inc/Blob/Android/armv7a
+# cp SnapshotBlob.h output/v8/Inc/Blob/Android/armv7a/

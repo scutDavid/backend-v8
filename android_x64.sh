@@ -61,7 +61,7 @@ v8_enable_i18n_support = true
 v8_target_cpu = "x64"
 use_goma = false
 v8_use_snapshot = true
-v8_use_external_startup_data = true
+v8_use_external_startup_data = false
 v8_static_library = true
 strip_debug_info = false
 symbol_level=1
@@ -73,7 +73,7 @@ ninja -C out.gn/x64.release -t clean
 ninja -C out.gn/x64.release wee8
 third_party/android_ndk/toolchains/x86_64-4.9/prebuilt/linux-x86_64/x86_64-linux-android/bin/strip -g -S -d --strip-debug --verbose out.gn/x64.release/obj/libwee8.a
 
-node $GITHUB_WORKSPACE/node-script/genBlobHeader.js "android x64" out.gn/x64.release/snapshot_blob.bin
+# node $GITHUB_WORKSPACE/node-script/genBlobHeader.js "android x64" out.gn/x64.release/snapshot_blob.bin
 
 mkdir -p output/v8/Lib/Android/x64
 cp out.gn/x64.release/obj/libwee8.a output/v8/Lib/Android/x64/
@@ -88,5 +88,5 @@ ar -rcsD output/v8/Lib/Android/x64/libwee81.a out.gn/x64.release/obj/third_party
 ar -rcsD output/v8/Lib/Android/x64/libwee81.a out.gn/x64.release/obj/third_party/icu/icui18n/*.o
 ar -rcsD output/v8/Lib/Android/x64/libwee81.a out.gn/x64.release/obj/v8_snapshot/*.o
 
-mkdir -p output/v8/Inc/Blob/Android/x64
-cp SnapshotBlob.h output/v8/Inc/Blob/Android/x64/
+# mkdir -p output/v8/Inc/Blob/Android/x64
+# cp SnapshotBlob.h output/v8/Inc/Blob/Android/x64/

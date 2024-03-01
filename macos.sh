@@ -53,7 +53,7 @@ vpython ./tools/dev/v8gen.py x64.release -vv -- '
 is_debug = false
 v8_enable_i18n_support = true
 v8_use_snapshot = true
-v8_use_external_startup_data = true
+v8_use_external_startup_data = false
 v8_static_library = true
 strip_debug_info = true
 symbol_level=0
@@ -63,10 +63,10 @@ v8_enable_pointer_compression=false
 ninja -C out.gn/x64.release -t clean
 ninja -C out.gn/x64.release wee8
 
-node $GITHUB_WORKSPACE/node-script/genBlobHeader.js "osx 64" out.gn/x64.release/snapshot_blob.bin
+# node $GITHUB_WORKSPACE/node-script/genBlobHeader.js "osx 64" out.gn/x64.release/snapshot_blob.bin
 
 mkdir -p output/v8/Lib/macOS
 cp out.gn/x64.release/obj/libwee8.a output/v8/Lib/macOS/
 cp out.gn/x64.release/icudtl.dat output/v8/Lib/macOS/
-mkdir -p output/v8/Inc/Blob/macOS
-cp SnapshotBlob.h output/v8/Inc/Blob/macOS/
+# mkdir -p output/v8/Inc/Blob/macOS
+# cp SnapshotBlob.h output/v8/Inc/Blob/macOS/

@@ -38,7 +38,7 @@ node $GITHUB_WORKSPACE/node-script/do-gitpatch.js -p $GITHUB_WORKSPACE/patches/b
 
 echo "=====[ Building V8 ]====="
 python ./tools/dev/v8gen.py arm64.release -vv -- '
-v8_use_external_startup_data = true
+v8_use_external_startup_data = false
 v8_use_snapshot = true
 v8_enable_i18n_support = true
 is_debug = false
@@ -56,11 +56,11 @@ ninja -C out.gn/arm64.release -t clean
 ninja -C out.gn/arm64.release wee8
 strip -S out.gn/arm64.release/obj/libwee8.a
 
-node $GITHUB_WORKSPACE/node-script/genBlobHeader.js "ios arm64(bitcode)" out.gn/arm64.release/snapshot_blob.bin
+# node $GITHUB_WORKSPACE/node-script/genBlobHeader.js "ios arm64(bitcode)" out.gn/arm64.release/snapshot_blob.bin
 
 mkdir -p output/v8/Lib/iOS/bitcode
 cp out.gn/arm64.release/obj/libwee8.a output/v8/Lib/iOS/bitcode/
 cp out.gn/arm64.release/icudtl.dat output/v8/Lib/iOS/bitcode/
 
-mkdir -p output/v8/Inc/Blob/iOS/bitcode
-cp SnapshotBlob.h output/v8/Inc/Blob/iOS/bitcode/
+# mkdir -p output/v8/Inc/Blob/iOS/bitcode
+# cp SnapshotBlob.h output/v8/Inc/Blob/iOS/bitcode/

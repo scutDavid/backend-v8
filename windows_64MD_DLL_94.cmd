@@ -47,7 +47,7 @@ node -e "const fs = require('fs'); fs.writeFileSync('./build/config/compiler/BUI
 @REM node %~dp0\node-script\add_arraybuffer_new_without_stl.js .
 
 echo =====[ Building V8 ]=====
-call gn gen out.gn\x64.release -args="target_os=""win"" target_cpu=""x64"" v8_use_external_startup_data=true v8_enable_i18n_support=true is_debug=false is_clang=false strip_debug_info=true symbol_level=0 v8_enable_pointer_compression=false is_component_build=true"
+call gn gen out.gn\x64.release -args="target_os=""win"" target_cpu=""x64"" v8_use_external_startup_data=false v8_enable_i18n_support=true is_debug=false is_clang=false strip_debug_info=true symbol_level=0 v8_enable_pointer_compression=false is_component_build=true"
 
 call ninja -C out.gn\x64.release -t clean
 call ninja -C out.gn\x64.release v8
