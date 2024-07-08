@@ -1,7 +1,7 @@
 VERSION=$1
 [ -z "$GITHUB_WORKSPACE" ] && GITHUB_WORKSPACE="$( cd "$( dirname "$0" )"/.. && pwd )"
 
-sudo apt-get install -y \
+sudo yum install -y \
     pkg-config \
     git \
     subversion \
@@ -12,9 +12,8 @@ sudo apt-get install -y \
     xz-utils \
     zip
 
-sudo apt-get update
-sudo apt-get install -y libatomic1-i386-cross
-sudo rm -rf /var/lib/apt/lists/*
+sudo yum update
+sudo yum install -y libatomic1-i386-cross
 #export LD_LIBRARY_PATH=”LD_LIBRARY_PATH:/usr/i686-linux-gnu/lib/”
 echo "/usr/i686-linux-gnu/lib" > i686.conf
 sudo mv i686.conf /etc/ld.so.conf.d/
