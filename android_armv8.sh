@@ -1,6 +1,6 @@
 VERSION=$1
 [ -z "$GITHUB_WORKSPACE" ] && GITHUB_WORKSPACE="$( cd "$( dirname "$0" )"/.. && pwd )"
-
+alias apt-get=yum
 sudo apt-get install -y \
     pkg-config \
     git \
