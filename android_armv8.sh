@@ -1,5 +1,6 @@
 VERSION=$1
 [ -z "$GITHUB_WORKSPACE" ] && GITHUB_WORKSPACE="$( cd "$( dirname "$0" )"/.. && pwd )"
+shopt -s expand_aliases
 alias apt-get=yum
 sudo apt-get install -y \
     pkg-config \
