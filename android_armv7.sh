@@ -36,14 +36,17 @@ export PATH=$(pwd)/depot_tools:$PATH
 gclient
 
 
-mkdir dev/v8
-cd dev/v8
+mkdir ~dev/v8
+cd ~dev/v8
 
 echo "=====[ Fetching V8 ]====="
 fetch v8
 echo "target_os = ['android']" >> .gclient
 cd ~/dev/v8/v8
-./build/install-build-deps-android.sh
+cd build
+ls
+./install-build-deps-android.sh
+cd ..
 git checkout cfr_v8_8.4-lkgr
 
 echo "=====[ fix DEPS ]===="
