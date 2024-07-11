@@ -36,9 +36,9 @@ export PATH=$(pwd)/depot_tools:$PATH
 gclient
 
 
-mkdir ~dev
-mkdir ~dev/v8
-cd ~dev/v8
+mkdir ~/dev
+mkdir ~/dev/v8
+cd ~/dev/v8
 
 echo "=====[ Fetching V8 ]====="
 fetch v8
