@@ -38,7 +38,9 @@ fetch v8
 echo "target_os = ['android']" >> .gclient
 cd ~/dev/v8/v8
 cd build
+ls
 ./install-build-deps-android.sh
+cd ..
 git checkout cfr_v8_8.4-lkgr
 
 echo "=====[ fix DEPS ]===="
