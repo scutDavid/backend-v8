@@ -1,8 +1,7 @@
 VERSION=$1
 [ -z "$GITHUB_WORKSPACE" ] && GITHUB_WORKSPACE="$( cd "$( dirname "$0" )"/.. && pwd )"
-shopt -s expand_aliases
-alias apt-get=yum
-sudo apt-get install -y \
+
+sudo yum install -y \
     pkg-config \
     git \
     subversion \
@@ -44,7 +43,9 @@ echo "=====[ fix DEPS ]===="
 node -e "const fs = require('fs'); fs.writeFileSync('./DEPS', fs.readFileSync('./DEPS', 'utf-8').replace(\"Var('chromium_url') + '/external/github.com/kennethreitz/requests.git'\", \"'https://github.com/kennethreitz/requests'\"));"
 
 gclient sync
-
+echo 'script_executable = "vpython"' >> .gn
+echo "=====[ vpython version ]====="
+vpython --version
 
 # echo "=====[ Patching V8 ]====="
 # git apply --cached $GITHUB_WORKSPACE/patches/builtins-puerts.patches
@@ -54,7 +55,7 @@ gclient sync
 # node $GITHUB_WORKSPACE/node-script/add_arraybuffer_new_without_stl.js .
 
 echo "=====[ Building V8 ]====="
-python ./tools/dev/v8gen.py arm64.release -vv -- '
+vpython ./tools/dev/v8gen.py arm64.release -vv -- '
 target_os = "android"
 target_cpu = "arm64"
 is_debug = false
