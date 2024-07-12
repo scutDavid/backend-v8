@@ -55,10 +55,9 @@ new_string1=""
 filename2="install-build-deps.sh"
 sed -i "s@$old_string1@$new_string1@g" $filename1
 sed -i "s@$old_string1@$new_string1@g" $filename2
-
 sh ./install-build-deps-android.sh
-git checkout cfr_v8_8.4-lkgr
 cd ..
+git checkout cfr_v8_8.4-lkgr
 
 echo "=====[ fix DEPS ]===="
 node -e "const fs = require('fs'); fs.writeFileSync('./DEPS', fs.readFileSync('./DEPS', 'utf-8').replace(\"Var('chromium_url') + '/external/github.com/kennethreitz/requests.git'\", \"'https://github.com/kennethreitz/requests'\"));"
