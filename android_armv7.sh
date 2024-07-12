@@ -46,15 +46,18 @@ echo "=====[ Fetching V8 ]====="
 fetch v8
 echo "target_os = ['android']" >> .gclient
 cd ~/v8/v8
-filename1="build/install-build-deps-android.sh"
+cd build
+ls
+filename1="install-build-deps-android.sh"
 old_string1="sudo" 
 new_string1=""
-filename2="build/install-build-deps.sh"
+filename2="install-build-deps.sh"
 sed -i "s@$old_string1@$new_string1@g" $filename1
 sed -i "s@$old_string1@$new_string1@g" $filename2
 
-./build/install-build-deps-android.sh
+sh ./install-build-deps-android.sh
 git checkout cfr_v8_8.4-lkgr
+cd ..
 
 echo "=====[ fix DEPS ]===="
 node -e "const fs = require('fs'); fs.writeFileSync('./DEPS', fs.readFileSync('./DEPS', 'utf-8').replace(\"Var('chromium_url') + '/external/github.com/kennethreitz/requests.git'\", \"'https://github.com/kennethreitz/requests'\"));"
