@@ -1,7 +1,7 @@
 VERSION=$1
 [ -z "$GITHUB_WORKSPACE" ] && GITHUB_WORKSPACE="$( cd "$( dirname "$0" )"/.. && pwd )"
 
- apt-get install -y \
+sudo apt-get install -y \
     pkg-config \
     git \
     subversion \
@@ -10,7 +10,8 @@ VERSION=$1
     build-essential \
     python \
     xz-utils \
-    zip
+    zip \
+    libxml2
 
  apt-get update
  apt-get install -y libatomic1-i386-cross
