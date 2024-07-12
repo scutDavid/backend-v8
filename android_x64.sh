@@ -75,18 +75,9 @@ third_party/android_ndk/toolchains/x86_64-4.9/prebuilt/linux-x86_64/x86_64-linux
 
 # node $GITHUB_WORKSPACE/node-script/genBlobHeader.js "android x64" out.gn/x64.release/snapshot_blob.bin
 
-mkdir -p output/v8/Lib/Android/x64
-cp out.gn/x64.release/obj/libwee8.a output/v8/Lib/Android/x64/
-cp out.gn/x64.release/icudtl.dat output/v8/Lib/Android/x64
-
-ar -rcsD output/v8/Lib/Android/x64/libwee81.a out.gn/x64.release/obj/v8_base_without_compiler/*.o
-ar -rcsD output/v8/Lib/Android/x64/libwee81.a out.gn/x64.release/obj/v8_libbase/*.o
-ar -rcsD output/v8/Lib/Android/x64/libwee81.a out.gn/x64.release/obj/v8_libsampler/*.o
-ar -rcsD output/v8/Lib/Android/x64/libwee81.a out.gn/x64.release/obj/v8_libplatform/*.o
-ar -rcsD output/v8/Lib/Android/x64/libwee81.a out.gn/x64.release/obj/src/inspector/inspector/*.o
-ar -rcsD output/v8/Lib/Android/x64/libwee81.a out.gn/x64.release/obj/third_party/icu/icuuc/*.o
-ar -rcsD output/v8/Lib/Android/x64/libwee81.a out.gn/x64.release/obj/third_party/icu/icui18n/*.o
-ar -rcsD output/v8/Lib/Android/x64/libwee81.a out.gn/x64.release/obj/v8_snapshot/*.o
+mkdir -p $GITHUB_WORKSPACE/output/v8/Lib/Android/x64
+cp out.gn/x64.release/obj/libwee8.a $GITHUB_WORKSPACE/output/v8/Lib/Android/x64/
+cp out.gn/x64.release/icudtl.dat $GITHUB_WORKSPACE/output/v8/Lib/Android/x64
 
 # mkdir -p output/v8/Inc/Blob/Android/x64
 # cp SnapshotBlob.h output/v8/Inc/Blob/Android/x64/

@@ -98,18 +98,9 @@ third_party/android_ndk/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_
 
 # node $GITHUB_WORKSPACE/node-script/genBlobHeader.js "android armv7" out.gn/arm.release/snapshot_blob.bin
 
-mkdir -p output/v8/Lib/Android/armeabi-v7a
-cp out.gn/arm.release/obj/libwee8.a output/v8/Lib/Android/armeabi-v7a/
-cp out.gn/arm.release/icudtl.dat output/v8/Lib/Android/armeabi-v7a/
-
-ar -rcsD output/v8/Lib/Android/armeabi-v7a/libwee81.a out.gn/arm.release/obj/v8_base_without_compiler/*.o
-ar -rcsD output/v8/Lib/Android/armeabi-v7a/libwee81.a out.gn/arm.release/obj/v8_libbase/*.o
-ar -rcsD output/v8/Lib/Android/armeabi-v7a/libwee81.a out.gn/arm.release/obj/v8_libsampler/*.o
-ar -rcsD output/v8/Lib/Android/armeabi-v7a/libwee81.a out.gn/arm.release/obj/v8_libplatform/*.o
-ar -rcsD output/v8/Lib/Android/armeabi-v7a/libwee81.a out.gn/arm.release/obj/src/inspector/inspector/*.o
-ar -rcsD output/v8/Lib/Android/armeabi-v7a/libwee81.a out.gn/arm.release/obj/third_party/icu/icuuc/*.o
-ar -rcsD output/v8/Lib/Android/armeabi-v7a/libwee81.a out.gn/arm.release/obj/third_party/icu/icui18n/*.o
-ar -rcsD output/v8/Lib/Android/armeabi-v7a/libwee81.a out.gn/arm.release/obj/v8_snapshot/*.o
+mkdir -p $GITHUB_WORKSPACE/output/v8/Lib/Android/armeabi-v7a
+cp out.gn/arm.release/obj/libwee8.a $GITHUB_WORKSPACE/output/v8/Lib/Android/armeabi-v7a/
+cp out.gn/arm.release/icudtl.dat $GITHUB_WORKSPACE/output/v8/Lib/Android/armeabi-v7a/
 
 # mkdir -p output/v8/Inc/Blob/Android/armv7a
 # cp SnapshotBlob.h output/v8/Inc/Blob/Android/armv7a/
