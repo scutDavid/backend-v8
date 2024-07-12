@@ -1,7 +1,7 @@
 VERSION=$1
 [ -z "$GITHUB_WORKSPACE" ] && GITHUB_WORKSPACE="$( cd "$( dirname "$0" )"/.. && pwd )"
 apt-get update
-apt-upgrade
+apt-get upgrade
 apt-get install -y \
     pkg-config \
     git \
