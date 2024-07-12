@@ -70,9 +70,9 @@ echo 'script_executable = "vpython"' >> .gn
 # node $GITHUB_WORKSPACE/node-script/add_arraybuffer_new_without_stl.js .
 
 echo "=====[ Building V8 ]====="
-# echo "=====[ vpython version ]====="
-python --version
-python ./tools/dev/v8gen.py arm.release -vv -- '
+echo "=====[ vpython version ]====="
+vpython --version
+vpython ./tools/dev/v8gen.py arm.release -vv -- '
 target_os = "android"
 target_cpu = "arm"
 is_debug = false
