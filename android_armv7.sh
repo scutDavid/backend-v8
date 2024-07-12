@@ -1,7 +1,7 @@
 VERSION=$1
 [ -z "$GITHUB_WORKSPACE" ] && GITHUB_WORKSPACE="$( cd "$( dirname "$0" )"/.. && pwd )"
-apt-get update
-apt-get upgrade
+apt-get update -y
+apt-get upgrade -y
 apt-get install -y \
     pkg-config \
     git \
@@ -14,7 +14,7 @@ apt-get install -y \
     libxml2\
     lsb-release
 
- apt-get update
+ apt-get update -y
  apt-get install -y libatomic1-i386-cross
  rm -rf /var/lib/apt/lists/*
 #export LD_LIBRARY_PATH=”LD_LIBRARY_PATH:/usr/i686-linux-gnu/lib/”
