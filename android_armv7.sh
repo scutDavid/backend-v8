@@ -12,7 +12,8 @@ apt-get install -y \
     xz-utils \
     zip \
     libxml2\
-    lsb-release
+    lsb-release \
+    gcc-multilib
 
  apt-get update -y
  apt-get install -y libatomic1-i386-cross
