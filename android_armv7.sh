@@ -9,7 +9,7 @@ apt-get install -y \
     curl \
     wget \
     build-essential \
-    python \
+    python3 \
     xz-utils \
     zip \
     libxml2\
