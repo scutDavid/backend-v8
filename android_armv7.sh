@@ -56,6 +56,7 @@ filename2="install-build-deps.sh"
 sed -i "s@$old_string1@$new_string1@g" $filename1
 sed -i "s@$old_string1@$new_string1@g" $filename2
 sh ./install-build-deps-android.sh
+sh ./install-build-deps.sh
 cd ..
 git checkout cfr_v8_8.4-lkgr
 
