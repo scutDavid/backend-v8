@@ -51,7 +51,7 @@ echo "=====[ fix DEPS ]===="
 node -e "const fs = require('fs'); fs.writeFileSync('./DEPS', fs.readFileSync('./DEPS', 'utf-8').replace(\"Var('chromium_url') + '/external/github.com/kennethreitz/requests.git'\", \"'https://github.com/kennethreitz/requests'\"));"
 
 gclient sync
-
+echo 'script_executable = "vpython"' >> .gn
 
 # echo "=====[ Patching V8 ]====="
 # git apply --cached $GITHUB_WORKSPACE/patches/builtins-puerts.patches
@@ -61,7 +61,9 @@ gclient sync
 # node $GITHUB_WORKSPACE/node-script/add_arraybuffer_new_without_stl.js .
 
 echo "=====[ Building V8 ]====="
-python ./tools/dev/v8gen.py arm.release -vv -- '
+echo "=====[ vpython version ]====="
+vpython --version
+vpython ./tools/dev/v8gen.py arm.release -vv -- '
 target_os = "android"
 target_cpu = "arm"
 is_debug = false
