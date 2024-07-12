@@ -12,7 +12,8 @@ apt-get install -y \
     python \
     xz-utils \
     zip \
-    libxml2
+    libxml2\
+    lsb-release
 
  apt-get update
  apt-get install -y libatomic1-i386-cross
