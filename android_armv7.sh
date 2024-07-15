@@ -1,5 +1,5 @@
 VERSION=$1
-[ -z "$GITHUB_WORKSPACE" ] && GITHUB_WORKSPACE="$( cd "$( dirname "$0" )"/.. && pwd )"
+[ -z "$GITHUB_WORKSPACE" ] && GITHUB_WORKSPACE="$( cd "$( dirname "$0" )" && pwd )"
 apt-get update -y
 apt-get upgrade -y
 apt-get install -y \
