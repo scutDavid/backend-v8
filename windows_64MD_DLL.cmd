@@ -64,5 +64,5 @@ copy /Y out.gn\x64.release\zlib.dll.pdb %GITHUBPATH%\v8\v8\output\v8\Lib\Win64DL
 copy /Y out.gn\x64.release\icudtl.dat %GITHUBPATH%\v8\v8\output\v8\Lib\Win64DLL\
 copy /Y out.gn\x64.release\icuuc.dll %GITHUBPATH%\v8\v8\output\v8\Lib\Win64DLL\
 copy /Y out.gn\x64.release\icui18n.dll %GITHUBPATH%\v8\v8\output\v8\Lib\Win64DLL\
-cd %GITHUBPATH%\v8\v8\output\v8\Lib\Win64DLL\
-powershell -Command "Get-ChildItem -Directory | ForEach-Object { Compress-Archive -Path $_.FullName -DestinationPath ('Win64DLL.zip') }"
+cd %GITHUBPATH%\v8\v8\output\v8\Lib\
+tar cvfz Win64DLL.tar Win64DLL
