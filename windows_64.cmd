@@ -65,3 +65,5 @@ copy /Y out.gn\x64.release\icudtl.dat %GITHUBPATH%\v8\v8\output\v8\Lib\Win64\
 
 echo =====[ Copy V8 header ]=====
 xcopy include %GITHUBPATH%\v8\v8\output\v8\Inc\  /s/h/e/k/f/c
+cd %GITHUBPATH%\v8\v8\output\v8\Inc
+powershell -Command "Get-ChildItem -Directory | ForEach-Object { Compress-Archive -Path $_.FullName -DestinationPath ('Inc.zip') }"
