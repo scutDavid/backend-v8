@@ -1,5 +1,5 @@
 VERSION=$1
-[ -z "$GITHUB_WORKSPACE" ] && GITHUB_WORKSPACE="$( cd "$( dirname "$0" )"/.. && pwd )"
+[ -z "$GITHUB_WORKSPACE" ] && GITHUB_WORKSPACE="$( cd "$( dirname "$0" )" && pwd )"
 
 sudo yum install -y \
     pkg-config \
@@ -81,21 +81,7 @@ third_party/android_ndk/toolchains/aarch64-linux-android-4.9/prebuilt/linux-x86_
 
 # node $GITHUB_WORKSPACE/node-script/genBlobHeader.js "android arm64" out.gn/arm64.release/snapshot_blob.bin
 
-mkdir -p output/v8/Lib/Android/arm64-v8a
-cp out.gn/arm64.release/obj/libwee8.a output/v8/Lib/Android/arm64-v8a/
-cp out.gn/arm64.release/icudtl.dat output/v8/Lib/Android/arm64-v8a/
+mkdir -p $GITHUB_WORKSPACE/output/v8/Lib/Android/arm64-v8a
+cp out.gn/arm64.release/obj/libwee8.a $GITHUB_WORKSPACE/output/v8/Lib/Android/arm64-v8a/
+cp out.gn/arm64.release/icudtl.dat $GITHUB_WORKSPACE/output/v8/Lib/Android/arm64-v8a/
 
-ar -rcsD output/v8/Lib/Android/arm64-v8a/libicuuc1.a out.gn/arm64.release/obj/third_party/icu/icuuc/*.o
-ar -rcsD output/v8/Lib/Android/arm64-v8a/libicui18n1.a out.gn/arm64.release/obj/third_party/icu/icui18n/*.o
-
-ar -rcsD output/v8/Lib/Android/arm64-v8a/libwee81.a out.gn/arm64.release/obj/v8_base_without_compiler/*.o
-ar -rcsD output/v8/Lib/Android/arm64-v8a/libwee81.a out.gn/arm64.release/obj/v8_libbase/*.o
-ar -rcsD output/v8/Lib/Android/arm64-v8a/libwee81.a out.gn/arm64.release/obj/v8_libsampler/*.o
-ar -rcsD output/v8/Lib/Android/arm64-v8a/libwee81.a out.gn/arm64.release/obj/v8_libplatform/*.o
-ar -rcsD output/v8/Lib/Android/arm64-v8a/libwee81.a out.gn/arm64.release/obj/src/inspector/inspector/*.o
-ar -rcsD output/v8/Lib/Android/arm64-v8a/libwee81.a out.gn/arm64.release/obj/third_party/icu/icuuc/*.o
-ar -rcsD output/v8/Lib/Android/arm64-v8a/libwee81.a out.gn/arm64.release/obj/third_party/icu/icui18n/*.o
-ar -rcsD output/v8/Lib/Android/arm64-v8a/libwee81.a out.gn/arm64.release/obj/v8_snapshot/*.o
-
-# mkdir -p output/v8/Inc/Blob/Android/arm64
-# cp SnapshotBlob.h output/v8/Inc/Blob/Android/arm64/
