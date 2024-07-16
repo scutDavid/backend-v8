@@ -33,6 +33,13 @@ call git restore *
 cd ..\..\..\
 call gclient sync
 
+cd build/util
+Set TimeFile=LASTCHGANGE.committime
+if not exist %TimeFile% (
+    echo "0" > %TimeFile%
+)
+cd ..\..\
+
 @REM echo =====[ Patching V8 ]=====
 @REM node %GITHUB_WORKSPACE%\CRLF2LF.js %GITHUB_WORKSPACE%\patches\builtins-puerts.patches
 @REM call git apply --cached --reject %GITHUB_WORKSPACE%\patches\builtins-puerts.patches
