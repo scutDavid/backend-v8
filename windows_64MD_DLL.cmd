@@ -20,6 +20,9 @@ set DEPOT_TOOLS_UPDATE=0
 
 %HOMEDRIVE%
 cd %HOMEDRIVE%%HOMEPATH%
+if exist v8 (
+    rmdir /S /Q v8
+)
 mkdir v8
 cd v8
 
