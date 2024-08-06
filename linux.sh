@@ -53,9 +53,9 @@ ninja -C out.gn/x64.release wee8
 
 # node $GITHUB_WORKSPACE/node-script/genBlobHeader.js "linux" out.gn/x64.release/snapshot_blob.bin
 
-mkdir -p output/v8/Lib/Linux
-cp out.gn/x64.release/obj/libwee8.a output/v8/Lib/Linux/
-cp out.gn/x64.release/icudtl.dat output/v8/Lib/Linux/
+mkdir -p $GITHUB_WORKSPACE/output/v8/Lib/Linux
+cp out.gn/x64.release/obj/libwee8.a  $GITHUB_WORKSPACE/output/v8/Lib/Linux/
+cp out.gn/x64.release/icudtl.dat  $GITHUB_WORKSPACE/output/v8/Lib/Linux/
 
 # mkdir -p output/v8/Inc/Blob/Linux
 # cp SnapshotBlob.h output/v8/Inc/Blob/Linux/

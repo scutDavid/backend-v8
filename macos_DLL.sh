@@ -1,5 +1,5 @@
 VERSION=$1
-[ -z "$GITHUB_WORKSPACE" ] && GITHUB_WORKSPACE="$( cd "$( dirname "$0" )"/.. && pwd )"
+[ -z "$GITHUB_WORKSPACE" ] && GITHUB_WORKSPACE="$( cd "$( dirname "$0" )" && pwd )"
 
 cd ~
 echo "=====[ Getting Depot Tools ]====="	
@@ -53,11 +53,14 @@ v8_enable_pointer_compression=false
 ninja -C out.gn/x64.release -t clean
 ninja -C out.gn/x64.release v8
 
-mkdir -p output/v8/Lib/macOSdylib
-cp out.gn/x64.release/icudtl.dat output/v8/Lib/macOSdylib/
-cp out.gn/x64.release/libv8.dylib output/v8/Lib/macOSdylib/
-cp out.gn/x64.release/libicuuc.dylib output/v8/Lib/macOSdylib/
-cp out.gn/x64.release/libicui18n.dylib output/v8/Lib/macOSdylib/
-cp out.gn/x64.release/libv8_libplatform.dylib output/v8/Lib/macOSdylib/
-cp out.gn/x64.release/libv8_libbase.dylib output/v8/Lib/macOSdylib/
-cp out.gn/x64.release/libchrome_zlib.dylib output/v8/Lib/macOSdylib/
+mkdir -p $GITHUB_WORKSPACE/output/v8/Lib/macOSdylib
+cp out.gn/x64.release/icudtl.dat $GITHUB_WORKSPACE/output/v8/Lib/macOSdylib/
+cp out.gn/x64.release/libv8.dylib $GITHUB_WORKSPACE/output/v8/Lib/macOSdylib/
+cp out.gn/x64.release/libicuuc.dylib $GITHUB_WORKSPACE/output/v8/Lib/macOSdylib/
+cp out.gn/x64.release/libicui18n.dylib $GITHUB_WORKSPACE/output/v8/Lib/macOSdylib/
+cp out.gn/x64.release/libv8_libplatform.dylib $GITHUB_WORKSPACE/output/v8/Lib/macOSdylib/
+cp out.gn/x64.release/libv8_libbase.dylib $GITHUB_WORKSPACE/output/v8/Lib/macOSdylib/
+cp out.gn/x64.release/libchrome_zlib.dylib $GITHUB_WORKSPACE/output/v8/Lib/macOSdylib/
+
+cd $GITHUB_WORKSPACE/output/v8/Lib
+tar cvfz MacOSDLL.tar MacOSDLL

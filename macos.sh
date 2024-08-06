@@ -1,5 +1,5 @@
 VERSION=$1
-[ -z "$GITHUB_WORKSPACE" ] && GITHUB_WORKSPACE="$( cd "$( dirname "$0" )"/.. && pwd )"
+[ -z "$GITHUB_WORKSPACE" ] && GITHUB_WORKSPACE="$( cd "$( dirname "$0" )" && pwd )"
 
 cd ~
 echo "=====[ Getting Depot Tools ]====="	
@@ -65,8 +65,8 @@ ninja -C out.gn/x64.release wee8
 
 # node $GITHUB_WORKSPACE/node-script/genBlobHeader.js "osx 64" out.gn/x64.release/snapshot_blob.bin
 
-mkdir -p output/v8/Lib/macOS
-cp out.gn/x64.release/obj/libwee8.a output/v8/Lib/macOS/
-cp out.gn/x64.release/icudtl.dat output/v8/Lib/macOS/
+mkdir -p $GITHUB_WORKSPACE/output/v8/Lib/macOS
+cp out.gn/x64.release/obj/libwee8.a $GITHUB_WORKSPACE/output/v8/Lib/macOS/
+cp out.gn/x64.release/icudtl.dat $GITHUB_WORKSPACE/output/v8/Lib/macOS/
 # mkdir -p output/v8/Inc/Blob/macOS
 # cp SnapshotBlob.h output/v8/Inc/Blob/macOS/
