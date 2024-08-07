@@ -63,4 +63,4 @@ cp out.gn/x64.release/libv8_libbase.dylib $GITHUB_WORKSPACE/output/v8/Lib/macOSd
 cp out.gn/x64.release/libchrome_zlib.dylib $GITHUB_WORKSPACE/output/v8/Lib/macOSdylib/
 
 cd $GITHUB_WORKSPACE/output/v8/Lib
-tar cvfz MacOSDLL.tar MacOSDLL
+tar cvfz MacOSDLL.tar macOSdylib
